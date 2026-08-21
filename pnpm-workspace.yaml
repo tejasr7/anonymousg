@@ -1,8 +1,0 @@
-# ponytail: single-package workspace — onlyBuiltDependencies for pnpm v11.
-onlyBuiltDependencies:
-  - sharp
-  - unrs-resolver
-  - "@prisma/client"
-  - "@prisma/engines"
-  - prisma
-  - esbuild
