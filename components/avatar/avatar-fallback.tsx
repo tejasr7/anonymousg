@@ -1,7 +1,8 @@
 "use client";
 
 // ponytail: animated 2D fallback when WebGL isn't available.
-// Uses CSS keyframes (in tailwind) for loops — no motion lib for avatar state.
+// Adds a character-specific radial gradient + better visual hierarchy
+// so portraits don't look like blobs at large sizes.
 
 import { PortraitSvg } from "./avatar-portrait";
 import { getCharacter } from "@/lib/characters";
@@ -35,16 +36,36 @@ export function AvatarFallback({
 
   const isDead = state === "dead";
   const isSleeping = state === "sleeping";
+  const id = `bg-${slug}-${dim}`;
 
   return (
     <div
       className={"relative flex items-center justify-center " + (className ?? "")}
       style={{ width: dim, height: dim }}
     >
+      {/* ponytail: per-character gradient — gives depth at large sizes. */}
+      <svg
+        width={dim}
+        height={dim}
+        className="absolute inset-0"
+        aria-hidden
+      >
+        <defs>
+          <radialGradient id={id} cx="50%" cy="35%" r="70%">
+            <stop offset="0%" stopColor={char.primary} stopOpacity="0.5" />
+            <stop offset="55%" stopColor={char.primary} stopOpacity="0.2" />
+            <stop offset="100%" stopColor={char.secondary} stopOpacity="0.05" />
+          </radialGradient>
+        </defs>
+        <rect width="100%" height="100%" fill={`url(#${id})`} />
+      </svg>
+
+      {/* ponytail: subtle inner glow ring for character depth */}
       <div
-        className="absolute inset-0 rounded-full blur-2xl opacity-30"
+        className="absolute inset-3 rounded-full opacity-40 blur-md"
         style={{ background: char.primary }}
       />
+
       <div
         className={
           "relative " +
@@ -61,7 +82,7 @@ export function AvatarFallback({
         <PortraitSvg
           character={char}
           className={
-            "w-full h-full " +
+            "w-full h-full drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] " +
             (isSleeping ? "brightness-75 saturate-50" : "")
           }
         />
