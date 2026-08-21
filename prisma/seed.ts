@@ -1,7 +1,7 @@
 // ponytail: idempotent seed — safe to re-run.
 
 import { PrismaClient } from "@prisma/client";
-import { CHARACTERS } from "../lib/characters";
+import { CHARACTERS } from "@/lib/characters";
 
 const prisma = new PrismaClient();
 
