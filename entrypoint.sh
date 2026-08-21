@@ -21,8 +21,7 @@ echo "[entrypoint] pushing schema..."
 ./node_modules/.bin/prisma db push --skip-generate --accept-data-loss
 
 echo "[entrypoint] seeding characters + rooms..."
-# ponytail: use ESM loader so tsx resolves @/ path aliases (CJS loader doesn't).
-node --import tsx/esm prisma/seed.ts
+./node_modules/.bin/tsx prisma/seed.ts
 
 echo "[entrypoint] starting server..."
 exec node dist/server.js
