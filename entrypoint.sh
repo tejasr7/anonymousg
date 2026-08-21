@@ -23,5 +23,18 @@ echo "[entrypoint] pushing schema..."
 echo "[entrypoint] seeding characters + rooms..."
 ./node_modules/.bin/tsx prisma/seed.ts
 
+echo "[entrypoint] ensuring office code '42069' exists..."
+# ponytail: direct upsert via plain node — no tsx dependency.
+# Belt-and-suspenders: seed.ts should have done this but we don't trust tsx in prod.
+node -e "
+const { PrismaClient } = require('@prisma/client');
+const p = new PrismaClient();
+p.officeCode.upsert({
+  where: { code: '42069' },
+  create: { code: '42069' },
+  update: {},
+}).then(() => p.\$disconnect());
+"
+
 echo "[entrypoint] starting server..."
 exec node dist/server.js
