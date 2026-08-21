@@ -1,0 +1,38 @@
+version: "3.9"
+
+# ponytail: local dev stack. For Dokploy prod, see DOKPLOY.md.
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: chaos_chat
+      POSTGRES_USER: chaos
+      POSTGRES_PASSWORD: chaos_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chaos"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://chaos:chaos_dev@postgres:5432/chaos_chat?schema=public
+      SESSION_SECRET: ${SESSION_SECRET:-change-me-in-prod-please}
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:

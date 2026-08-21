@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Character {
+  id        String   @id
+  slug      String   @unique
+  displayName String
+  vibe      String
+  primary   String
+  secondary String
+  bodyShape String
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  sessions  AnonymousSession[]
+  messages  Message[]
+  reactions Reaction[]
+}
+
+model AnonymousSession {
+  id           String    @id @default(cuid())
+  tokenHash    String    @unique
+  characterId  String
+  officeCode   String
+  createdAt    DateTime  @default(now())
+  lastSeenAt   DateTime  @default(now())
+  bannedAt     DateTime?
+
+  character Character @relation(fields: [characterId], references: [id])
+  messages  Message[]
+  reactions Reaction[]
+  reports   Report[]  @relation("Reporter")
+
+  @@index([lastSeenAt])
+}
+
+model Room {
+  id        String   @id
+  slug      String   @unique
+  name      String
+  description String
+  emoji     String
+  createdAt DateTime @default(now())
+  archivedAt DateTime?
+
+  messages Message[]
+}
+
+model Message {
+  id               String    @id @default(cuid())
+  sessionId        String
+  characterId      String
+  roomId           String
+  body             String
+  replyToMessageId String?
+  createdAt        DateTime  @default(now())
+  deletedAt        DateTime?
+
+  session   AnonymousSession @relation(fields: [sessionId], references: [id])
+  character Character       @relation(fields: [characterId], references: [id])
+  room      Room            @relation(fields: [roomId], references: [id])
+
+  reactions Reaction[]
+  reports   Report[]
+
+  @@index([roomId, createdAt])
+  @@index([sessionId])
+}
+
+model Reaction {
+  id        String   @id @default(cuid())
+  messageId String
+  sessionId String
+  characterId String
+  emoji     String
+  createdAt DateTime @default(now())
+
+  message   Message          @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  session   AnonymousSession @relation(fields: [sessionId], references: [id])
+  character Character        @relation(fields: [characterId], references: [id])
+
+  @@unique([messageId, sessionId, emoji])
+  @@index([messageId])
+}
+
+model Report {
+  id               String   @id @default(cuid())
+  messageId        String
+  reporterSessionId String
+  reason           String
+  createdAt        DateTime @default(now())
+  resolvedAt       DateTime?
+
+  message         Message          @relation(fields: [messageId], references: [id])
+  reporterSession AnonymousSession @relation("Reporter", fields: [reporterSessionId], references: [id])
+
+  @@index([resolvedAt])
+}
