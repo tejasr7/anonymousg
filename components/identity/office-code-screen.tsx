@@ -68,7 +68,7 @@ export function OfficeCodeScreen() {
             join the chaos
           </h1>
           <p className="text-ink-muted text-sm mb-6">
-            type the office code. no accounts. no names. just vibes.
+            type the office code. ask around if you don't have it.
           </p>
 
           <form onSubmit={submit} className="space-y-4">
@@ -87,7 +87,7 @@ export function OfficeCodeScreen() {
                   setCode(e.target.value);
                   if (error) setError(null);
                 }}
-                placeholder="42069"
+                placeholder="office code"
                 autoComplete="off"
                 autoCapitalize="none"
                 autoCorrect="off"
