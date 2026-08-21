@@ -5,7 +5,10 @@ FROM node:22-alpine AS deps
 RUN corepack enable
 WORKDIR /app
 COPY package.json pnpm-lock.yaml .npmrc ./
-RUN pnpm install --frozen-lockfile --ignore-workspace
+RUN pnpm install --frozen-lockfile --ignore-workspace \
+    --allow-build=sharp --allow-build=unrs-resolver \
+    --allow-build=@prisma/client --allow-build=@prisma/engines \
+    --allow-build=prisma --allow-build=esbuild
 
 # ---------- builder ----------
 FROM node:22-alpine AS builder
