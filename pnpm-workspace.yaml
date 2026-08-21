@@ -1,12 +1,6 @@
 packages:
   - .
-allowBuilds:
-  sharp: set this to true or false
-  unrs-resolver: set this to true or false
-  "@prisma/client": set this to true or false
-  "@prisma/engines": set this to true or false
-  prisma: set this to true or false
-  esbuild: set this to true or false
+# ponytail: pnpm v11 — packages that need to run their postinstall scripts.
 onlyBuiltDependencies:
   - sharp
   - unrs-resolver
