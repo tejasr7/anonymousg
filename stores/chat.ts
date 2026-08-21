@@ -23,7 +23,7 @@ type ChatState = {
 };
 
 export const useChatStore = create<ChatState>((set, get) => ({
-  currentRoomId: "general",
+  currentRoomId: "42069",
   rooms: [],
   messagesByRoom: {},
   replyTo: null,

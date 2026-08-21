@@ -7,11 +7,11 @@ const prisma = new PrismaClient();
 
 const ROOMS = [
   {
-    id: "general",
-    slug: "general",
-    name: "general",
-    description: "say anything stupid",
-    emoji: "🪑",
+    id: "42069",
+    slug: "42069",
+    name: "42069",
+    description: "the main room. everything happens here.",
+    emoji: "🌑",
   },
   {
     id: "random",
@@ -23,9 +23,9 @@ const ROOMS = [
   {
     id: "memes",
     slug: "memes",
-    name: "memes",
     description: "send the cursed ones",
     emoji: "🪼",
+    name: "memes",
   },
   {
     id: "lunch",

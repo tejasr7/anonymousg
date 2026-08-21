@@ -64,6 +64,14 @@ export function Sidebar() {
     return out;
   }, [rooms, messagesByRoom, blocked]);
 
+  // ponytail: 42069 first, rest by createdAt (server order).
+  const sortedRooms = useMemo(() => {
+    const idx = rooms.findIndex((r) => r.id === "42069");
+    if (idx <= 0) return rooms;
+    const reordered = [rooms[idx], ...rooms.slice(0, idx), ...rooms.slice(idx + 1)];
+    return reordered;
+  }, [rooms]);
+
   const visibleOnlineCount = useMemo(
     () =>
       characterSlug
@@ -108,7 +116,7 @@ export function Sidebar() {
       </div>
 
       <nav className="px-2 py-2 flex-1 overflow-y-auto">
-        {rooms.map((room) => {
+        {sortedRooms.map((room) => {
           const Icon = ROOM_ICONS[room.slug] ?? House;
           const active = room.id === currentRoomId;
           const msgs = visibleByRoom[room.id] ?? [];
