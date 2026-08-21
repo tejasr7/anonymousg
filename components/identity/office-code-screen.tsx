@@ -87,7 +87,7 @@ export function OfficeCodeScreen() {
                   setCode(e.target.value);
                   if (error) setError(null);
                 }}
-                placeholder="________________"
+                placeholder="42069"
                 autoComplete="off"
                 autoCapitalize="none"
                 autoCorrect="off"

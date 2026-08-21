@@ -147,6 +147,11 @@ async function main() {
         const body = await readJson<{ code?: string }>(req);
         const code = body.code?.trim().toLowerCase();
         if (!code) return json(res, 400, { error: "code required" });
+        // ponytail: validate against allowlist — was "any non-empty passes" in MVP.
+        const codeRecord = await prisma.officeCode.findUnique({ where: { code } });
+        if (!codeRecord || !codeRecord.enabled) {
+          return json(res, 403, { error: "invalid code" });
+        }
         const token = generateSessionToken();
         const tokenHash = hashToken(token, SESSION_SECRET);
         const slug = assignIdentity(token);

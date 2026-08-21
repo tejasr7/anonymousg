@@ -35,9 +35,11 @@ const CHARACTERS = [
 const ROOMS = [
   { id: "42069", slug: "42069", name: "42069", description: "the main room. everything happens here.", emoji: "🌑" },
   { id: "random", slug: "random", name: "random", description: "weird things only", emoji: "🎲" },
-  { id: "memes",  slug: "memes",  name: "memes",  description: "send the cursed ones", emoji: "🪼" },
+  { id: "memes",  slug: "memes",  name: "memes",  description: "send the cursed ones", emoji: "�" },
   { id: "lunch",  slug: "lunch",  name: "lunch",  description: "who's going down", emoji: "🍱" },
 ];
+
+const OFFICE_CODES = [{ code: "42069" }];
 
 async function main() {
   let charCount = 0;
@@ -73,6 +75,15 @@ async function main() {
     });
   }
   console.log(`✓ ${ROOMS.length} rooms`);
+
+  for (const o of OFFICE_CODES) {
+    await prisma.officeCode.upsert({
+      where: { code: o.code },
+      create: o,
+      update: {},
+    });
+  }
+  console.log(`✓ ${OFFICE_CODES.length} office code`);
 }
 
 main()

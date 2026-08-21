@@ -52,6 +52,13 @@ model Room {
   messages Message[]
 }
 
+model OfficeCode {
+  id        String   @id @default(cuid())
+  code      String   @unique
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
 model Message {
   id               String    @id @default(cuid())
   sessionId        String
