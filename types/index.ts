@@ -16,7 +16,12 @@ export type CharacterSlug =
   | "greasy-monkey"
   | "broken-lizard"
   | "stupid-goat"
-  | "basement-rat";
+  | "basement-rat"
+  | "gadhe-ki-gaand"
+  | "baaill"
+  | "diarrhea-dump"
+  | "pus-pocket"
+  | "booger-boss";
 
 export type AvatarState =
   | "idle"

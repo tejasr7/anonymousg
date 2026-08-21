@@ -173,10 +173,12 @@ export function IdentityReveal({
     }
   }, [phase, reducedMotion]);
 
-  // ponytail: random pick of a "wrong" character for the scramble placeholder.
-  const scrambledName = scramble.length > 0
-    ? scramble
-    : charName.split("");
+  // ponytail: scramble only during "assigning"; real name otherwise.
+  // Otherwise the last random glyphs would stick on the screen after settling.
+  const displayName =
+    phase === "assigning" && scramble.length > 0
+      ? scramble
+      : charName.split("");
 
   return (
     <div className="fixed inset-0 z-50 bg-bg overflow-hidden flex items-center justify-center">
@@ -240,7 +242,7 @@ export function IdentityReveal({
               className="text-5xl sm:text-7xl font-bold uppercase tracking-tight text-shadow-brutal min-h-[1.2em]"
               aria-label={charName}
             >
-              {scrambledName.map((ch, i) => (
+              {displayName.map((ch, i) => (
                 <span
                   key={i}
                   className="inline-block"

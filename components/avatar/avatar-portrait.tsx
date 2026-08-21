@@ -252,6 +252,118 @@ export function PortraitSvg({
           <path d="M16 50 L12 56 M48 50 L52 56" stroke="#000" strokeWidth="2" />
         </svg>
       );
+    case "gadhe-ki-gaand":
+      return (
+        <svg {...common}>
+          {/* ponytail: donkey's ass — rounded with a tuft + tail. */}
+          <ellipse cx="32" cy="34" rx="22" ry="20" fill={p} stroke="#000" strokeWidth="3" />
+          {/* tail */}
+          <path d="M52 30 Q60 28 56 18" stroke="#000" strokeWidth="3" fill="none" />
+          <circle cx="56" cy="18" r="2" fill={s} />
+          {/* tuft */}
+          <path d="M28 16 Q32 10 36 16" stroke="#000" strokeWidth="2" fill="none" />
+          {/* ass-hole */}
+          <circle cx="32" cy="40" r="3" fill={s} stroke="#000" strokeWidth="2" />
+          {/* eyes (looking back, annoyed) */}
+          <circle cx="22" cy="30" r="3" fill="#fff" stroke="#000" strokeWidth="1.5" />
+          <circle cx="42" cy="30" r="3" fill="#fff" stroke="#000" strokeWidth="1.5" />
+          <circle cx="22" cy="30" r="1.5" fill="#000" />
+          <circle cx="42" cy="30" r="1.5" fill="#000" />
+          {/* angry mouth */}
+          <path d="M26 44 L38 44" stroke="#000" strokeWidth="2" />
+        </svg>
+      );
+    case "baaill":
+      return (
+        <svg {...common}>
+          {/* ponytail: bull — red-brown with horns, angry. */}
+          <ellipse cx="32" cy="38" rx="20" ry="18" fill={p} stroke="#000" strokeWidth="3" />
+          {/* horns */}
+          <path d="M18 22 Q12 12 14 18 Q14 22 18 24" fill={s} stroke="#000" strokeWidth="2" />
+          <path d="M46 22 Q52 12 50 18 Q50 22 46 24" fill={s} stroke="#000" strokeWidth="2" />
+          {/* snout */}
+          <ellipse cx="32" cy="44" rx="10" ry="6" fill="#D8B898" stroke="#000" strokeWidth="2" />
+          <circle cx="29" cy="42" r="1.2" fill="#000" />
+          <circle cx="35" cy="42" r="1.2" fill="#000" />
+          {/* angry eyes */}
+          <circle cx="24" cy="32" r="2.5" fill="#fff" stroke="#000" strokeWidth="1.5" />
+          <circle cx="40" cy="32" r="2.5" fill="#fff" stroke="#000" strokeWidth="1.5" />
+          <circle cx="24" cy="32" r="1.2" fill="#000" />
+          <circle cx="40" cy="32" r="1.2" fill="#000" />
+          {/* angry eyebrows */}
+          <path d="M20 28 L28 30" stroke="#000" strokeWidth="2" />
+          <path d="M44 28 L36 30" stroke="#000" strokeWidth="2" />
+        </svg>
+      );
+    case "diarrhea-dump":
+      return (
+        <svg {...common}>
+          {/* ponytail: runny brown mess — irregular shape with drips. */}
+          <path
+            d="M14 38 Q12 30 18 24 Q20 16 30 18 Q40 14 44 22 Q52 26 50 36 Q54 46 46 50 L46 56 L40 50 L30 54 L22 48 L18 56 L14 46 Z"
+            fill={p}
+            stroke="#000"
+            strokeWidth="3"
+          />
+          {/* drip highlight */}
+          <ellipse cx="28" cy="26" rx="4" ry="3" fill={s} opacity="0.6" />
+          {/* sick eyes */}
+          <circle cx="26" cy="32" r="3" fill="#fff" stroke="#000" strokeWidth="1.5" />
+          <circle cx="38" cy="32" r="3" fill="#fff" stroke="#000" strokeWidth="1.5" />
+          <circle cx="26" cy="32" r="1.5" fill="#000" />
+          <circle cx="38" cy="32" r="1.5" fill="#000" />
+          {/* tired circles under eyes */}
+          <path d="M22 36 Q26 38 30 36" stroke="#000" strokeWidth="1.5" fill="none" />
+          <path d="M34 36 Q38 38 42 36" stroke="#000" strokeWidth="1.5" fill="none" />
+          {/* weak mouth */}
+          <path d="M28 40 Q32 38 36 40" stroke="#000" strokeWidth="1.5" fill="none" />
+          {/* drips below */}
+          <ellipse cx="20" cy="54" rx="2" ry="3" fill={p} />
+          <ellipse cx="32" cy="58" rx="1.5" ry="2.5" fill={p} />
+          <ellipse cx="44" cy="54" rx="2" ry="3" fill={p} />
+        </svg>
+      );
+    case "pus-pocket":
+      return (
+        <svg {...common}>
+          {/* ponytail: yellow blister with face, sickly. */}
+          <ellipse cx="32" cy="36" rx="22" ry="20" fill={p} stroke="#000" strokeWidth="3" />
+          {/* pus highlight */}
+          <ellipse cx="26" cy="26" rx="6" ry="4" fill="#F0DC8C" opacity="0.8" />
+          <ellipse cx="38" cy="40" rx="3" ry="2" fill="#F0DC8C" opacity="0.6" />
+          {/* pimple on top */}
+          <circle cx="42" cy="20" r="3" fill="#E8B858" stroke="#000" strokeWidth="1.5" />
+          {/* sick eyes */}
+          <circle cx="24" cy="34" r="2.5" fill="#fff" stroke="#000" strokeWidth="1.5" />
+          <circle cx="40" cy="34" r="2.5" fill="#fff" stroke="#000" strokeWidth="1.5" />
+          <circle cx="24" cy="34" r="1.5" fill="#000" />
+          <circle cx="40" cy="34" r="1.5" fill="#000" />
+          {/* grimace */}
+          <path d="M26 42 L38 42" stroke="#000" strokeWidth="2" />
+          <path d="M28 44 L36 44" stroke="#000" strokeWidth="1.5" />
+        </svg>
+      );
+    case "booger-boss":
+      return (
+        <svg {...common}>
+          {/* ponytail: green mucus blob with a crown. */}
+          <ellipse cx="32" cy="38" rx="22" ry="18" fill={p} stroke="#000" strokeWidth="3" />
+          {/* crown */}
+          <path d="M20 22 L24 12 L28 18 L32 10 L36 18 L40 12 L44 22 Z" fill="#C8FF3D" stroke="#000" strokeWidth="2" />
+          <circle cx="32" cy="14" r="2" fill="#C8FF3D" stroke="#000" strokeWidth="1.5" />
+          {/* slime highlight */}
+          <ellipse cx="24" cy="28" rx="5" ry="3" fill="#A8C84A" opacity="0.7" />
+          {/* boss eyes (small, mean) */}
+          <path d="M22 32 L28 34" stroke="#000" strokeWidth="2.5" />
+          <path d="M36 34 L42 32" stroke="#000" strokeWidth="2.5" />
+          <circle cx="25" cy="36" r="1" fill="#000" />
+          <circle cx="39" cy="36" r="1" fill="#000" />
+          {/* smug mouth */}
+          <path d="M24 44 Q32 48 40 44" stroke="#000" strokeWidth="2" fill="none" />
+          {/* drip */}
+          <ellipse cx="44" cy="52" rx="1.5" ry="2.5" fill={p} />
+        </svg>
+      );
     default:
       return (
         <svg {...common}>
